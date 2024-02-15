@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"content="">
+    <meta name="description"content="">
+    <meta name="keywords"content="">
+    <title></title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="./jquery.fullPage.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="./jquery.fullPage.js"></script>
+    <style>
+        .nav {}
+        .nav a {font-size: 30px;}
+        .wrap{}
+        .wrap .container {}
+        .wrap .container span {font-size: 35px;}
+        .wrap .container:nth-child(1) {background: teal; color: #fff; font-size: 30px; font-weight: bold;}
+        .wrap .container:nth-child(2) {background: tan; color: #fff; font-size: 30px; font-weight: bold;}
+        .wrap .container:nth-child(3) {height: 500px; background:sandybrown !important;}
+        .wrap .container:nth-child(4) {background:seagreen}
+        nav {position: fixed; left: 50px; top:50px; z-index: 999;}
+        nav a {}
+        /* 키프레임 */
+        .bg {animation: bg 2s ease both}
+        @keyframes bg {
+            0% {transform: translateX(0);}
+            100% {transform: translateX(200px);}
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="#bg1">제목1</a>
+        <a href="#bg2">제목2</a>
+        <a href="#bg3">bg3</a>
+        <a href="#bg4">bg4</a>
+    </nav>
+    <div class="wrap">
+        <div class="container section bg1"><span >내용1:</span> 제이쿼리는 자바스크립트 라이브러리입니다.</div>
+        <div class="container section bg2"><span>내용2:</span> 제이쿼리는 DOM 이벤트와 스타일을 자바스크립트보다 쉽게 제작할 수 있습니다.</div>
+        <div class="container section bg3">3</div>
+        <div class="container section bg4">4</div>
+    </div>
+    <script>
+          $(".wrap").fullpage({
+            //속성 : 값, 속성:값,
+            scrollBar:true,// 스크롤바 표시하기
+            scrollingSpeed:1000, // 스크롤바 전환속도 (기본값 1000)
+            navigation:true, // 우측 내비게이션 표시하기 (기본값 false)
+            navigationTooltips:["bg1","bg2","bg3","bg4"],
+            //내비게이션에 마우스 올리면 제목 표시 
+            showActiveTooltip:true,// 자동으로 제목 표시(기본값 false)
+            menu: "nav",
+            anchors:["bg1","bg2","bg3","bg4"], // 메뉴a #이름과 일치시킨 이름작성
+            afterLoad:function(anchor, index){ // 매개변수명칭은 자유지정
+                console.log(anchor, index) // 확인
+               /*  if(anchor == "bg2"){ // 앵커의 위치가 b와 같으면
+                    $(".bg2").get(0).classList.add("bg")
+                } else {
+                    $(".bg2").get(0).classList.remove("bg")
+                } */
+            }
+        })
+    </script>
+</body>
+</html>
